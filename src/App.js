@@ -13,7 +13,9 @@ const Auto = () => {
     const game = [];
     const promises = new Array(20)
       .fill()
-      .map((v, i) => fetch(`https://rawg.io/api/games?key=${API_KEY}${i + 1}`));
+      .map((v, i) =>
+        fetch(`https://api.rawg.io/api/games?key=${API_KEY}${i + 1}`)
+      );
     Promise.all(promises).then((gameArr) => {
       return gameArr.map((value) =>
         value.json().then(({ name }) => game.push({ name }))
